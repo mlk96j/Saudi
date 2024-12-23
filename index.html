@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المملكة العربية السعودية</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+        body {
+            margin: 0;
+            font-family: 'Amiri', serif; /* استخدام خط جميل لجميع النصوص */
+            color: white;
+            direction: rtl;
+            background-color: #121212; /* Dunkler Hintergrund */
+        }
+
+        /* Header-Stil */
+        .header {
+            font-family: 'Amiri', serif; /* استخدام خط جميل لجميع النصوص */
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            background-color: #013220;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .hidden {
+            transform: translateY(-100%);
+        }
+
+        .header img {
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        .header h1 {
+            font-family: 'Amiri', serif; /* استخدام خط جميل لجميع النصوص */
+            margin: 0;
+            font-size: 1.8rem;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        /* Abstand für den ersten Abschnitt */
+        .content-wrapper {
+            padding-top: 80px; /* Platz für den Header */
+        }
+
+        /* Styling für Abschnitte */
+        section {
+            padding: 20px;
+            margin: 20px auto;
+            background: linear-gradient(145deg, #014d26, #027a3f);
+            max-width: 800px;
+            border-radius: 10px;
+            border: 2px solid #8B0000; /* Rötliche Linie um die Abschnitte */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section + section {
+            margin-top: 20px;
+        }
+
+        /*--------------------- Letze Secton wo Flagge */
+        .section h3 {
+            margin: 0 0 10px;
+            font-family: 'Amiri', serif;
+            font-size: 1.5rem;
+        }
+        .info-section {
+            /*border: 1px solid #ccc;*/
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .info-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .info-item {
+            margin-bottom: 20px;
+        }
+        .info-item img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+        /* Titel in einer Box */
+        .title-box {
+            background-color: #fff;
+            color: #013220;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover-Effekt für Titel */
+        .title-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Textelemente */
+        p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Link-Stil */
+        a {
+            color: #1e90ff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        a:hover {
+            color: #ffcc00;
+        }
+
+        /* Eingebettetes Video */
+        iframe {
+            width: 100%;
+            height: 315px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
+        /* Stil für النص المختصر */ 
+       .text {
+            font-family: 'Amiri', serif; /* استخدام خط جميل لجميع النصوص */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* عرض أول سطرين */
+            -webkit-box-orient: vertical;
+            font-size: 1.5rem; /* تكبير حجم النص */
+
+        }
+        .text.expanded {
+            -webkit-line-clamp: unset; /* إظهار النص كاملاً عند التوسيع */
+        }
+        .toggle-btn {
+            font-family: 'Amiri', serif; /* استخدام خط جميل لجميع النصوص */
+            cursor: pointer;
+            color: #1e90ff;
+            border: none;
+            background: none;
+            padding: 0;
+            font-size: 1.5rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Header-Bereich -->
+    <div class="header" id="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Flag_map_of_Syria_%281930–1958%2C_1961–1963%29.svg" alt="Logo">
+        <h1>الجمهورية العربية السورية</h1>
+    </div>
+
+    <!-- Inhalt -->
+    <div class="content-wrapper">
+
+        <!-- Abschnitt 0 -->
+        <section>
+            <div class="title-box">سوريا تاريخيا</div>
+            <div class="text">
+                منطقة سوريا تعد واحدة من أقدم المناطق المأهولة في العالم.
+                بدأ الاستيطان البشري فيها منذ العصر الحجري، حيث تم اكتشاف مواقع أثرية تعود إلى ما يزيد عن 700,000 سنة قبل الميلاد.
+                من أبرز الحضارات القديمة التي نشأت في سوريا حضارة إيبلا التي ازدهرت في شمال سوريا حوالي 3000 قبل الميلاد. في العصور اللاحقة،
+                شهدت المنطقة سيطرة العديد من الإمبراطوريات مثل الأكاديين، البابليين، الآشوريين، والفرس. في القرن الرابع قبل الميلاد، أصبحت سوريا جزءًا من الإمبراطورية الإغريقية تحت حكم الإسكندر الأكبر،
+                ثم الرومان في القرن الأول قبل الميلاد. بعد ذلك، سيطر البيزنطيون على المنطقة حتى الفتح الإسلامي في القرن السابع الميلادي.
+                في العصور الوسطى، كانت سوريا جزءًا من الدولة الأموية ثم العباسية، وتعرضت لاحقًا للحملات الصليبية. في النهاية،
+              أصبحت سوريا جزءًا من الدولة العثمانية في القرن السادس عشر واستمرت تحت حكمها حتى نهاية الحرب العالمية الأولى.
+             </div>
+             <button class="toggle-btn" onclick="toggleText(this)">عرض المزيد</button>
+            <p>
+                لمزيد من التفاصيل عن استقلال سوريا، 
+                <a href="https://ar.wikipedia.org/wiki/%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE_%D8%B3%D9%88%D8%B1%D9%8A%D8%A7">اضغط هنا</a>.
+            </p>
+        </section>
+        </div>
+        <!-- Abschnitt 1 -->
+        <section>
+            <div class="title-box">ظهور دولة سوريا</div>
+            <div class="text">
+                بعد نهاية الحرب العالمية الأولى وهزيمة الدولة العثمانية، تم توقيع معاهدة سيفر عام 1920،
+                التي قسمت أراضي الدولة العثمانية بين القوى الأوروبية. في هذه الفترة،
+                قاد الشريف حسين بن علي الثورة العربية الكبرى (1916-1918) ضد العثمانيين بدعم من بريطانيا،
+                مما أسفر عن استقلال بعض الدول العربية.
+                بعد سقوط الدولة العثمانية،تم تقسيم سوريا ولبنان تحت الانتداب الفرنسي بموجب اتفاقية سايكس بيكو.
+                ظهرت سوريا كدولة مستقلة بعد انتهاء الانتداب الفرنسي عام 1946،
+                بعد نضال طويل ضد الاحتلال الفرنسي وتوقيع اتفاقية الجلاء التي أنهت الوجود العسكري الفرنسي في البلاد.
+             </div>
+             <button class="toggle-btn" onclick="toggleText(this)">عرض المزيد</button>            
+            <iframe src="https://www.youtube.com/embed/bv7-gn4UvjI" allowfullscreen></iframe>
+            <p>
+                لمزيد من المعلومات عن هذه الفترة، 
+                <a href="https://ar.wikipedia.org/wiki/الانتداب_الفرنسي_على_سوريا_ولبنان" target="_blank">اضغط هنا</a>.
+            </p>
+        </section>
+
+        <!-- Abschnitt 2 -->
+        <section>
+            <div class="title-box">الاستقلال في عام 1946</div>
+            <div class="text">
+                بعد حصول سوريا على استقلالها الكامل من الانتداب الفرنسي في عام 1946، بدأت البلاد في بناء
+                مؤسساتها الوطنية. في عام 1949،
+                شهدت سوريا سلسلة من الانقلابات العسكرية، أبرزها انقلاب حسني الزعيم، الذي أدى إلى عدم استقرار سياسي.
+                في عام 1958، اتحدت سوريا مع مصر لتشكيل الجمهورية العربية المتحدة،
+                ولكن هذا الاتحاد لم يدم طويلاً وانتهى في عام 1961. في عام 1963،
+                استولى حزب البعث على السلطة بعد انقلاب عسكري، مما أدى إلى تغييرات جذرية في السياسة السورية.
+                في عام 1970، قام حافظ الأسد بانقلاب عسكري وأصبح رئيسًا لسوريا،
+                حيث حكم البلاد بقبضة حديدية، وأجرى إصلاحات اقتصادية وبنى تحالفات إقليمية ودولية.
+                بعد وفاة حافظ الأسد في عام 2000، تولى ابنه بشار الأسد الحكم، واستمر في السلطة حتى عام 2010،
+                حيث شهدت سوريا فترة من الاستقرار النسبي قبل اندلاع الثورة السورية في عام 2011.
+             </div>
+             <button class="toggle-btn" onclick="toggleText(this)">عرض المزيد</button>           
+            <p>
+                لمزيد من التفاصيل عن استقلال سوريا، 
+                <a href="https://ar.wikipedia.org/wiki/الجمهورية_السورية_الأولى" target="_blank">اضغط هنا</a>.
+            </p>
+            <p>
+                لمزيد من التفاصيل عن حكم حزب البعث، 
+                <a href="https://ar.wikipedia.org/wiki/سوريا_إبان_حكم_حزب_البعث" target="_blank">اضغط هنا</a>.
+            </p>
+        </section>
+
+        <!-- Abschnitt 3 -->
+        <section>
+            <div class="title-box">الثورة السورية</div>
+            <div class="text">
+                بدأت الثورة السورية في مارس 2011 باحتجاجات سلمية في درعا، مطالبة بالإصلاحات وإطلاق سراح الأطفال المعتقلين.
+                سرعان ما انتشرت الاحتجاجات إلى مدن أخرى مثل دمشق وحمص وحماة.
+                في أبريل 2011، استخدمت الحكومة السورية القوة لقمع المظاهرات، مما أدى إلى سقوط قتلى وجرحى.
+                في يوليو 2011، تأسس الجيش السوري الحر منشقين عن الجيش النظامي، وبدأت المواجهات المسلحة بين الطرفين.
+                في عام 2012، تصاعدت حدة الصراع واستخدمت الحكومة الأسلحة الثقيلة والطائرات لقصف المناطق المعارضة.
+                في أغسطس 2013، وقع هجوم كيميائي في الغوطة الشرقية، مما أسفر عن مقتل مئات المدنيين.
+                في عام 2014، سيطر تنظيم داعش على أجزاء واسعة من سوريا، مما زاد من تعقيد الصراع.
+                في سبتمبر 2015، تدخلت روسيا عسكريًا لدعم الحكومة السورية.
+                في عام 2016، استعادت القوات الحكومية مدينة حلب بعد معارك عنيفة.
+                في عام 2017، أعلنت الحكومة السورية استعادة السيطرة على معظم المناطق التي كانت تحت سيطرة المعارضة.
+                في عام 2018، شنت الحكومة هجومًا واسعًا على الغوطة الشرقية واستعادتها بالكامل.
+                في عام 2019، أعلنت قوات سوريا الديمقراطية المدعومة من الولايات المتحدة هزيمة تنظيم داعش في سوريا.
+                في عام 2020، استمرت الاشتباكات في إدلب، آخر معقل للمعارضة المسلحة.
+                في عام 2021، بدأت محادثات السلام بين الحكومة والمعارضة برعاية الأمم المتحدة، لكنها لم تحقق تقدمًا كبيرًا.
+                في عام 2022، استمرت الأزمة الإنسانية مع نزوح الملايين من السوريين داخل وخارج البلاد. في عام 2023،
+                شهدت سوريا تدهورًا اقتصاديًا كبيرًا بسبب العقوبات الدولية وتدمير البنية التحتية. في عام 2024،
+                استمرت الجهود الدولية لإيجاد حل سياسي للأزمة السورية، لكن الصراع لا يزال مستمرًا.
+             </div>
+             <button class="toggle-btn" onclick="toggleText(this)">عرض المزيد</button>
+            <p>
+                للمزيد عن هذه الحقبة، 
+                <a href="https://ar.wikipedia.org/wiki/الحرب_الأهلية_السورية" target="_blank">اضغط هنا</a>.
+            </p>
+        </section>
+
+        <!-- Abschnitt 4 -->
+        <section>
+            <div class="title-box">تحرير سوريا</div>
+            <div class="text">
+              بعد تهجير الناس إلى إدلب في عام 2018،
+                أصبحت إدلب آخر معقل للمعارضة السورية. بدأت عمليات التهجير بشكل مكثف في الربع الأخير من عام 2016،
+                حيث تم نقل آلاف الأشخاص من مناطق مختلفة في سوريا إلى إدلب كجزء من اتفاقيات التهجير القسري بين النظام والمعارضة.
+                إدلب كانت الوجهة الرئيسية للمهجرين لأنها كانت تحت سيطرة المعارضة المسلحة وقريبة من الحدود التركية، مما يسهل وصول المساعدات الإنسانية.
+                الباصات الخضراء أصبحت رمزًا للتهجير القسري، حيث استخدمت لنقل المهجرين وأصبحت تمثل مشهد المعاناة.
+
+                في نوفمبر 2024، شنت هيئة تحرير الشام وفصائل معارضة هجومًا واسعًا من إدلب نحو دمشق.
+                في 27 نوفمبر، بدأت المعارك العنيفة في شمال سوريا، مما أدى إلى تقدم المعارضة نحو حلب وقطع الطريق الرئيسي بين حلب ودمشق.
+                في 1 ديسمبر، سيطرت المعارضة على حلب بالكامل. في 3 ديسمبر، بدأت المعارضة في محاصرة دمشق.
+                في 5 ديسمبر، أعلنت المعارضة السيطرة على معظم أحياء دمشق. في 7 ديسمبر، هرب بشار الأسد من دمشق.
+                في 8 ديسمبر 2024، أعلنت الفصائل المسلحة دخول دمشق بالكامل،
+                مما أدى إلى تحرير سوريا بعد 14 عامًا من الصراع والنضال.
+             </div>
+             <button class="toggle-btn" onclick="toggleText(this)">عرض المزيد</button>
+            <p>
+                لمعرفة المزيد عن الثورة السورية، 
+                <a href="https://ar.wikipedia.org/wiki/هجوم_المعارضة_السورية_2024" target="_blank">اضغط هنا</a>.
+            </p>
+        </section>
+        <!-- Abschnitt 4 -->
+        <section>
+        <div class="info-section">
+        <div class="title-box">سوريا</div>
+        <div class="info-item">
+            <h3>علم سوريا</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Flag_of_the_Syrian_revolution.svg" alt="علم سوريا">
+        </div>
+        <div class="info-item">
+            <h3>شعار سوريا</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Coat_of_arms_of_Syria_%282024–present%29.svg" alt="شعار سوريا">
+        </div>
+        <section>
+
+
+    </div>
+    <script>
+        // JavaScript für Header-Sichtbarkeit
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 100) { 
+                if (scrollTop > lastScrollTop) {
+                    header.classList.add('hidden');
+                } else {
+                    header.classList.remove('hidden');
+                }
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // JavaScript für Scroll-Animationen
+        const sections = document.querySelectorAll('section');
+
+        const onScroll = () => {
+            const scrollPos = window.scrollY + window.innerHeight * 0.75;
+            sections.forEach(section => {
+                if (section.offsetTop < scrollPos) {
+                    section.classList.add('visible');
+                }
+            });
+        };
+        window.addEventListener('scroll', onScroll);
+        onScroll(); // Initial check
+        // JavaScript für "اعرض المزيد" Funktion
+        function toggleText(button) {
+            const textElement = button.previousElementSibling;
+            textElement.classList.toggle('expanded');
+            if (textElement.classList.contains('expanded')) {
+                button.textContent = 'عرض أقل';
+            } else {
+                button.textContent = 'عرض المزيد';
+            }
+        }
+    </script>
+</body>
+</html>
